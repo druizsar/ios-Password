@@ -14,6 +14,7 @@ class PasswordTextField: UIView {
     let textField = UITextField()
     let eyeButton = UIButton(type: .custom)
     let divider = UIView()
+    let errorLabel = UILabel()
     
     // Auxiliar
     let placeHolderText: String
@@ -32,7 +33,7 @@ class PasswordTextField: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 200)
+        return CGSize(width: 200, height: 50)
     }
 }
 
@@ -40,7 +41,7 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
     
     func style() {
-        backgroundColor = .systemBackground
+        backgroundColor = .tertiarySystemBackground
         
         // Lock Image
         lockImageView.contentMode = .scaleAspectFit
@@ -48,6 +49,7 @@ extension PasswordTextField {
         // Test Field
         textField.isSecureTextEntry = true
         textField.placeholder = placeHolderText
+        textField.font = UIFont.preferredFont(forTextStyle: .body)
         //textField.delegate = self
         textField.keyboardType = .asciiCapable
         textField.attributedPlaceholder = NSAttributedString(string: placeHolderText,
@@ -61,6 +63,16 @@ extension PasswordTextField {
         
         // Divider
         divider.backgroundColor = .separator
+        
+        // Error label
+        errorLabel.textColor = .systemRed
+        errorLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        errorLabel.text = "Your password must meet the requirements below. Long text, lost of words that are not needed."
+        errorLabel.isHidden = false
+        errorLabel.adjustsFontSizeToFitWidth = false
+        errorLabel.minimumScaleFactor = 0.8
+        errorLabel.numberOfLines = 0
+        errorLabel.lineBreakMode = .byWordWrapping
     
     }
     
@@ -69,11 +81,13 @@ extension PasswordTextField {
         textField.translatesAutoresizingMaskIntoConstraints = false
         eyeButton.translatesAutoresizingMaskIntoConstraints = false
         divider.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(lockImageView)
         addSubview(textField)
         addSubview(eyeButton)
         addSubview(divider)
+        addSubview(errorLabel)
         
         // Lock Image
         NSLayoutConstraint.activate([
@@ -106,6 +120,15 @@ extension PasswordTextField {
             divider.trailingAnchor.constraint(equalTo: trailingAnchor),
             divider.heightAnchor.constraint(equalToConstant: 1),
             divider.topAnchor.constraint(equalToSystemSpacingBelow: textField.bottomAnchor, multiplier: 1)
+        ])
+        
+        // Error Label
+        
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalToSystemSpacingBelow: divider.bottomAnchor, multiplier: 1),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomAnchor.constraint(equalToSystemSpacingBelow: errorLabel.bottomAnchor, multiplier: 1)
         ])
     
     }

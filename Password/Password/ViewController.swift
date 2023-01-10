@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     // UI Elements
     let stackView = UIStackView()
     let newPasswordTextField = PasswordTextField(placeHolderText: "New Password")
+    let passwordCriteriaView = PasswordCriteriaView(text: "Contains at least one uppercase letter (A-Z).")
     let confirmPasswordTextField = PasswordTextField(placeHolderText: "Confirm your password")
     
     override func viewDidLoad() {
@@ -33,10 +34,13 @@ extension ViewController {
     func layout() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         newPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordCriteriaView.translatesAutoresizingMaskIntoConstraints = false
         confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(newPasswordTextField)
+        stackView.addArrangedSubview(passwordCriteriaView)
         stackView.addArrangedSubview(confirmPasswordTextField)
         
         // Stack View

@@ -63,7 +63,6 @@ extension PasswordCriteriaView {
         // Stack View
         stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.backgroundColor = .secondarySystemBackground
         
         // Image View
         imageView.image = circleImage
@@ -98,6 +97,7 @@ extension PasswordCriteriaView {
         
         // CHCR
         imageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        imageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
     

@@ -33,7 +33,7 @@ class PasswordTextField: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 50)
+        return CGSize(width: 200, height: 40)
     }
 }
 
@@ -41,7 +41,6 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
     
     func style() {
-        backgroundColor = .tertiarySystemBackground
         
         // Lock Image
         lockImageView.contentMode = .scaleAspectFit
